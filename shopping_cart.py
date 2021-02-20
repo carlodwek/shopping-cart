@@ -13,7 +13,7 @@ def main():
     print("Shopping Cart Interface")
     print("-----------------------")
     products = GetProducts()
-    print(products)
+    #print(products)
     print("Inventory Updated")
     print()
     check = True
@@ -29,12 +29,18 @@ def main():
             SubTotalUSD = to_usd(SubTotal)
             TaxUSD = to_usd(Tax)
             TotalUSD = to_usd(Total)
+            for i in cart:
+                input()
+                print(cart)
+                i["price"] = to_usd(float(i["price"]))
+                print(cart)
             #CommandLineOutput(cart, SubTotalUSD,TaxUSD,TotalUSD)
+            #WriteReceiptFile(cart, SubTotalUSD,TaxUSD,TotalUSD)
             choice2 = input("Would you like an email receipt? ")
             choice2 = choice2.lower()
             if choice2 == "yes" or choice2 == "y":
                 TO_ADDRESS = input("Email: ")
-                #SendEmail(TO_ADDRESS, SubTotalUSD,TaxUSD,TotalUSD, cart)
+                SendEmail(TO_ADDRESS, SubTotalUSD,TaxUSD,TotalUSD, cart)
                 choice3 = input("Would you like to opt-in to the customer loyalty program?")
                 choice3 = choice3.lower()
                 if choice3 == "yes" or choice3 == "y":
@@ -44,7 +50,7 @@ def main():
             products = GetProducts()
             print("Inventory Updated")
         elif choice == "exit":
-            check == False
+            check = False
         else:
             print("Invalid selection.")
 
@@ -70,7 +76,28 @@ def TaxTotal(TotalPrice):
         return Tax
 
 def Cart(products):
-    return products
+    check = True
+    cart = []
+    print(products)
+    ids = [item["id"] for item in products]
+    while check == True:
+        selectionid = input("Please input a product identifier (input 'done' when finished): ")
+        if selectionid == "done" or selectionid == "DONE" or selectionid == "Done":
+            check = False
+        elif selectionid in ids:
+            selectionl = [item for item in products if item["id"] == int(selectionid)]
+            selection = selectionl[0]
+            if selection["price_per"] == "pound":
+                pounds = input("Pounds? ")
+                print(selection["price"])
+                selection["price"] = float(pounds)*(selection["price"])
+                print(selection["price"])
+            cart.append(selection)
+            print(selection["name"], "added to cart.")
+        else:
+            "Invalid identifier."
+    print(cart)
+    return cart
 
 def CommandLineOutput(cart, SubTotalUSD,TaxUSD,TotalUSD):
     return
@@ -108,9 +135,9 @@ def GetProducts():
 
     rows = sheet.get_all_records()
     print("ROWS:", type(rows)) #> <class 'list'>
-    print(rows)
-    for row in rows:
-        print(row) #> <class 'dict'>
+    # print(rows)
+    # for row in rows:
+    #     print(row) #> <class 'dict'>
     return rows
 
 def OptIn(TO_ADDRESS):
@@ -178,6 +205,7 @@ def SendEmail(TO_ADDRESS, SubTotalUSD,TaxUSD, TotalUSD, cart):
     # this must match the test data structure
     template_data = {
         "total_price_usd": SubTotalUSD,
+        "tax": TaxUSD,
         "total_price_usd_wtax": TotalUSD,
         "human_friendly_timestamp": dt_string,
         "products": cart

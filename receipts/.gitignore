@@ -1,0 +1,7 @@
+# this is the "receipts/.gitignore" file...
+
+# ignore all the files in this directory:
+*
+
+# but don't ignore this ".gitignore" file:
+!.gitignore
