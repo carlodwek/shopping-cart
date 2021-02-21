@@ -97,9 +97,9 @@ def Cart(products):
                 pounds = input("How many pounds? ")
                 try:
                     newprice = float(pounds)*(selection["price"])
-                    nselection = selection
-                    nselection["price"] = newprice
-                    cart.append(nselection)
+                    selectioncopy = selection.copy()
+                    selectioncopy["price"] = newprice
+                    cart.append(selectioncopy)
                     print(selection["name"], "added to cart.")
                 except ValueError:
                     print("Invalid weight input.")
