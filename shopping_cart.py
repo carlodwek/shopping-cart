@@ -1,5 +1,6 @@
 # shopping_cart.py
 import os
+import textwrap
 from dotenv import load_dotenv
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -116,59 +117,71 @@ def Receipt(cart, SubTotalUSD,TaxUSD,TotalUSD,now):
     filename = ftime+".txt"
     with open(os.path.join(path, filename), "w") as file:
         print()
-        bars = "--------------------------------------------------------------------------------"
         n = "\n"
-        print(bars)
-        file.write(bars)
-        carlocafe = "CARLO'S CAFE"
-        carlocafep = carlocafe.center(80, '-')
-        print(carlocafep)
+        carlocafe = '{:^40}'.format("CARLO'S CAFE")
+        print(carlocafe)
         file.write(n)
-        file.write(carlocafep)
-        wbste = "WWW.CARLOCAFE.COM"
-        wbstep = wbste.center(80, '-')
-        print(wbstep)
+        file.write(carlocafe)
+        wbste = '{:^40}'.format("www.carlocafe.com")
+        print(wbste)
         file.write(n)
-        file.write(wbstep)
-        print(bars)
+        file.write(wbste)
+        print()
         file.write(n)
-        file.write(bars)
-        ctime = now.strftime("%d/%m/%Y %H:%M:%S")
-        ctimep = ctime.ljust(80, '-')
-        print(ctimep)
+        ctime = "CHECKOUT TIME:"+" "+now.strftime("%d/%m/%Y %H:%M:%S")
+        print(ctime)
         file.write(n)
-        file.write(ctimep)
-        print(bars)
+        file.write(ctime)
+        print()
         file.write(n)
-        file.write(bars)
         hitem = "ITEM"
-        hitemp = hitem.ljust(40, '-')
         hprice = "PRICE"
-        hpricep = hprice.rjust(40, '-')
-        print(hitemp+hpricep)
+        headers = '{:<30}{:>10}'.format(hitem,hprice)
+        print(headers)
+        file.write(n)
+        file.write(headers)
+        file.write(n)
         for i in cart:
             item = i["name"]
             price = i["price"]
-            itemp = item.ljust(40, '-')
-            pricep = price.rjust(40, '-')
-            print(itemp+pricep)
+            itemf = textwrap.wrap(item, width=30)
+            counter=1
+            for i in itemf:
+                file.write(n)
+                if counter == len(itemf):
+                    line = '{:<30}{:>10}'.format(i,price)
+                    print(line)
+                    file.write(line)
+                else:
+                    print(i)
+                    file.write(i)
+                counter+=1
+            file.write(n)
+        print()
+        file.write(n)
         subtoth = "SUBTOTAL"
-        subtothp = subtoth.ljust(40, '-')
-        subtot = SubTotalUSD.rjust(40, '-')
-        print(subtothp+subtot)
+        line = '{:>30}{:>10}'.format(subtoth,SubTotalUSD)
+        print(line)
+        file.write(line)
+        file.write(n)
         taxh = "TAX"
-        taxhp = taxh.ljust(40, '-')
-        tax = TaxUSD.rjust(40, '-')
-        print(taxhp+tax)
+        line = '{:>30}{:>10}'.format(taxh,TaxUSD)
+        print(line)
+        file.write(line)
+        file.write(n)
         toth = "TOTAL"
-        tothp = toth.ljust(40, '-')
-        tot = TotalUSD.rjust(40, '-')
-        print(tothp+tot)
-        print(bars)
+        line = '{:>30}{:>10}'.format(toth,TotalUSD)
+        print(line)
+        file.write(line)
+        file.write(n)
+        print()
+        file.write(n)
+        # print(bars)
         bye = "THANKS FOR SHOPPING AT CARLO'S CAFE"
-        byep = bye.ljust(80, '-')
-        print(byep)
-        print(bars)
+        print(bye)
+        file.write(bye)
+        print()
+        # print(bars)
 
 
 def GetProducts():
