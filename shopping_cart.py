@@ -31,9 +31,7 @@ def main():
                 TaxUSD = to_usd(Tax)
                 TotalUSD = to_usd(Total)
                 for i in cart:
-                    typev = str(type(i["price"]))
-                    if typev != "<class 'str'>":
-                        i["price"] = to_usd(float(i["price"]))
+                    i["price"] = to_usd(float(i["price"]))
                 now = datetime.now()
                 print()
                 Receipt(cart, SubTotalUSD,TaxUSD,TotalUSD, now)
@@ -93,11 +91,11 @@ def Cart(products):
         elif selectionid in ids:
             selectionl = [item for item in products if item["id"] == int(selectionid)]
             selection = selectionl[0]
+            selectioncopy = selection.copy()
             if selection["price_per"] == "pound":
                 pounds = input("How many pounds? ")
                 try:
                     newprice = float(pounds)*(selection["price"])
-                    selectioncopy = selection.copy()
                     selectioncopy["price"] = newprice
                     cart.append(selectioncopy)
                     print(selection["name"], "added to cart.")
@@ -105,13 +103,13 @@ def Cart(products):
                     print("Invalid weight input.")
                     print("Selection not added.")
             else:
-                cart.append(selection)
+                cart.append(selectioncopy)
                 print(selection["name"], "added to cart.")
         else:
             print("Invalid identifier.")
     #print(cart)
     return cart
-
+#to do: Receipt output!!!
 def Receipt(cart, SubTotalUSD,TaxUSD,TotalUSD,now):
     path = "./receipts"
     ftime = now.strftime("%Y-%m-%d-%H-%M-%S-%f")
