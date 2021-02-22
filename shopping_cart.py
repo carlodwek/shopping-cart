@@ -14,13 +14,12 @@ def main():
     print("Shopping Cart Interface")
     print("-----------------------")
     products = GetProducts()
-    #print(products)
-    print("Inventory updated.")
+    print("Inventory synced.")
     check = True
     while check == True:
         print()
         print("MAIN MENU")
-        choice = input("Please input 'new cart' or 'update inventory' or 'exit': ")
+        choice = input("Please input 'new cart' or 'sync inventory' or 'exit': ")
         choice = choice.lower()
         if choice == "new cart" or choice == "newcart":
             cart = Cart(products)
@@ -42,7 +41,6 @@ def main():
                 if choice2 == "yes" or choice2 == "y":
                     TO_ADDRESS = input("Email: ")
                     SendEmail(TO_ADDRESS, SubTotalUSD,TaxUSD,TotalUSD, cart, now)
-                    print("Email receipt sent.")
                     choice3 = input("Would you like to opt-in to the customer loyalty program? ")
                     choice3 = choice3.lower()
                     if choice3 == "yes" or choice3 == "y":
@@ -51,9 +49,9 @@ def main():
                 print("Thank you for shopping with us today!")
             else:
                 print('Your cart is empty.')
-        elif choice == "update inventory" or choice == "updateinventory":
+        elif choice == "sync inventory" or choice == "syncinventory":
             products = GetProducts()
-            print("Inventory updated.")
+            print("Inventory synced.")
         elif choice == "exit":
             check = False
         else:
@@ -118,11 +116,11 @@ def Receipt(cart, SubTotalUSD,TaxUSD,TotalUSD,now):
     with open(os.path.join(path, filename), "w") as file:
         print()
         n = "\n"
-        carlocafe = '{:^40}'.format("CARLO'S CAFE")
+        carlocafe = '{:^40}'.format("CARLONE'S")
         print(carlocafe)
         file.write(n)
         file.write(carlocafe)
-        wbste = '{:^40}'.format("www.carlocafe.com")
+        wbste = '{:^40}'.format("www.carlones.com")
         print(wbste)
         file.write(n)
         file.write(wbste)
@@ -176,17 +174,15 @@ def Receipt(cart, SubTotalUSD,TaxUSD,TotalUSD,now):
         file.write(n)
         print()
         file.write(n)
-        # print(bars)
-        bye = "THANKS FOR SHOPPING AT CARLO'S CAFE"
+        bye = "THANKS FOR SHOPPING AT CARLONE'S"
         print(bye)
         file.write(bye)
         print()
-        # print(bars)
 
 
 def GetProducts():
 
-    print("Updating Inventory...")
+    print("Syncing Inventory...")
 
     DOCUMENT_ID = os.getenv("GOOGLE_SHEET_ID", default="OOPS")
     SHEET_NAME = os.getenv("SHEET_NAME", default="Products-2021")
@@ -306,6 +302,7 @@ def SendEmail(TO_ADDRESS, SubTotalUSD,TaxUSD, TotalUSD, cart, now):
 
     try:
         response = client.send(message)
+        print("Email receipt sent.")
     #    print("RESPONSE:", type(response))
     #    print(response.status_code)
     #    print(response.body)
