@@ -35,11 +35,26 @@ pip install -r requirements.txt
 
 #### Enviroment Variables
 
-In order to run the code, a .env file containing the Tax Rate, the Google Sheets IDs for both the Inventory Management dataset and the Customer Emails collector, and the Sendgrid API Key, Template ID and Sender Address must be added to the local repo folder. If you require my .env file or elements of my .env file to run the code, please let me know I would be happy to send it privately.
+In order to run the code, a .env file containing the variables TAX_RATE, GOOGLE_SHEET_ID (1v8Xv_xGytBmDlpLokqatS55fCl9SnA8WhXWlmC06Bx0), GOOGLE_SHEET_ID2 (1dybCYFjFJpNoD1oDB04W3u2xdp_2vCRa6gbo2ajz4iI), SENDGRID_TEMPLATE_ID (d-8ff5185e8fab423799abc8a5593e397f), SENDER_ADDRESS and SENDGRID_API_KEY must be set up.
+
+First, [sign up for a SendGrid account](https://signup.sendgrid.com/), then follow the instructions to complete your "Single Sender Verification", clicking the link in a confirmation email to verify your account.
+
+Then [create a SendGrid API Key](https://app.sendgrid.com/settings/api_keys) with "full access" permissions. We'll want to store the API Key value in the enviroment variable `SENDGRID_API_KEY`.
+
+Set `SENDER_ADDRESS` to be the same email address as the single sender address you just associated with your SendGrid account (e.g. "abc123@gmail.com").
 
 #### Google Credentials
 
-In order to run the code, a google-credentials.json file must be added in an auth folder in the local repo folder. This file contains the private API information required to read and write on the Goodle Sheets. Again, if you require my google-credentials.json file or elements of my google-credentials.json file to run the project, I would be happy to send it privately.
+In order to run the code, a google-credentials.json file must be added in an auth folder in the local repo folder. This file contains the private API information required to read and write on the Goodle Sheets.
+
+Visit the [Google Developer Console](https://console.developers.google.com/cloud-resource-manager). Create a new project, or select an existing one. Click on your project, then from the project page, search for the "Google Sheets API" and enable it. Also search for the "Google Drive API" and enable it.
+
+From either API page, or from the [API Credentials](https://console.developers.google.com/apis/credentials) page, follow a process to create and download credentials to use the APIs:
+  1. Click "Create Credentials" for a "Service Account". Follow the prompt to create a new service account named something like "spreadsheet-service", and add a role of "Editor".
+  2. Click on the newly created service account from the "Service Accounts" section, and click "Add Key" to create a new "JSON" credentials file for that service account. Download the resulting .json file (this might happen automatically).
+  3. Move a copy of the credentials file into your project repository, typically into the root directory or perhaps a directory called "auth", and note its filepath. For the example below, we'll refer to a file called "google-credentials.json" in an "auth" directory (i.e. "auth/google-credentials.json").
+
+Finally, modify the google sheets' sharing settings to grant "edit" privileges to the "client email" address specified in the credentials file.
 
 ## Instructions
 
