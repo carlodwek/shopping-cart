@@ -31,13 +31,13 @@ Download the required packages (first time only):
 pip install -r requirements.txt
 ```
 
-## Files not Included in the Git Repo
+### Files not Included in the Git Repo
 
-### Enviroment Variables
+#### Enviroment Variables
 
 In order to run the code, a .env file containing the Tax Rate, the Google Sheets IDs for both the Inventory Management dataset and the Customer Emails collector, and the Sendgrid API Key, Template ID and Sender Address must be added to the local repo folder. If you require my .env file or elements of my .env file to run the code, please let me know I would be happy to send it privately.
 
-### Google Credentials
+#### Google Credentials
 
 In order to run the code, a google-credentials.json file must be added in an auth folder in the local repo folder. This file contains the private API information required to read and write on the Goodle Sheets. Again, if you require my google-credentials.json file or elements of my google-credentials.json file to run the project, I would be happy to send it privately.
 
