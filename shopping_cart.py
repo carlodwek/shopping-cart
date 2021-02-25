@@ -36,12 +36,12 @@ def main():
                 print()
                 Receipt(cart, SubTotalUSD,TaxUSD,TotalUSD, now)
                 print()
-                choice2 = input("Would you like an email receipt? ")
+                choice2 = input("Would you like an email receipt? [yes, y] ")
                 choice2 = choice2.lower()
                 if choice2 == "yes" or choice2 == "y":
                     TO_ADDRESS = input("Email: ")
                     SendEmail(TO_ADDRESS, SubTotalUSD,TaxUSD,TotalUSD, cart, now)
-                    choice3 = input("Would you like to opt-in to the customer loyalty program? ")
+                    choice3 = input("Would you like to opt-in to the customer loyalty program? [yes, y] ")
                     choice3 = choice3.lower()
                     if choice3 == "yes" or choice3 == "y":
                         OptIn(TO_ADDRESS)
@@ -311,5 +311,6 @@ def SendEmail(TO_ADDRESS, SubTotalUSD,TaxUSD, TotalUSD, cart, now):
     except Exception as err:
         print(type(err))
         print(err)
+        print("Email not sent.")
 
 main()
