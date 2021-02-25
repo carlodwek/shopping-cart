@@ -49,7 +49,7 @@ Run the program from the command-line:
 python shopping_cart.py
 ```
 
-On opening, the application will automatically sync its inventory of available items to the Google Sheet Inventory management system found [here.] (https://docs.google.com/spreadsheets/d/1v8Xv_xGytBmDlpLokqatS55fCl9SnA8WhXWlmC06Bx0/edit?usp=sharing)
+On opening, the application will automatically sync its inventory of available items to the Google Sheet Inventory management system found [here] (https://docs.google.com/spreadsheets/d/1v8Xv_xGytBmDlpLokqatS55fCl9SnA8WhXWlmC06Bx0/edit?usp=sharing).
 
 ### Main Menu
 
@@ -73,7 +73,7 @@ The system will then output your receipt in the command line, and save a timesta
 
 It will then prompt you on whether you would like your receipt emailed to you. Enter "yes" or "y" (not case sensitive) to proceed. Entering anything else will end the portion of the program.
 * If you decide to proceed, you will be prompted to enter your email.
-* You will then be asked if you want your email to be stored in the [Customer Email Database.] (https://docs.google.com/spreadsheets/d/1dybCYFjFJpNoD1oDB04W3u2xdp_2vCRa6gbo2ajz4iI/edit?usp=sharing) Again "yes" or "y" (not case sensitive) will work and anything else will move on.
+* You will then be asked if you want your email to be stored in the [Customer Email Database] (https://docs.google.com/spreadsheets/d/1dybCYFjFJpNoD1oDB04W3u2xdp_2vCRa6gbo2ajz4iI/edit?usp=sharing). Again "yes" or "y" (not case sensitive) will work and anything else will move on.
 
 ### Conclusion
 
