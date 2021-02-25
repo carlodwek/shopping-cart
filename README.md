@@ -56,7 +56,7 @@ On opening, the application will automatically sync its inventory of available i
 You will then enter the main menu and be prompted to select either "new cart", "sync inventory" or "exit". The commands are not case sensitive and can be entered without a space.
 * "sync inventory" will update the code's inventory list to match the one in the provided Google Sheets.
 * "exit" is the required step if you want to exit the program.
-* "new cart will start a new cart run the rest of the code's functionality.
+* "new cart" will start a new cart run the rest of the code's functionality.
 
 ### New Cart
 
