@@ -35,7 +35,7 @@ pip install -r requirements.txt
 
 #### Enviroment Variables
 
-In order to run the code, a .env file containing the variables TAX_RATE, GOOGLE_SHEET_ID (1v8Xv_xGytBmDlpLokqatS55fCl9SnA8WhXWlmC06Bx0), GOOGLE_SHEET_ID2 (1dybCYFjFJpNoD1oDB04W3u2xdp_2vCRa6gbo2ajz4iI), SENDGRID_TEMPLATE_ID (d-8ff5185e8fab423799abc8a5593e397f), SENDER_ADDRESS and SENDGRID_API_KEY must be set up.
+In order to run the code, a .env file containing the variables TAX_RATE (decimal format), GOOGLE_SHEET_ID (1v8Xv_xGytBmDlpLokqatS55fCl9SnA8WhXWlmC06Bx0), GOOGLE_SHEET_ID2 (1dybCYFjFJpNoD1oDB04W3u2xdp_2vCRa6gbo2ajz4iI), SENDGRID_TEMPLATE_ID (d-8ff5185e8fab423799abc8a5593e397f), SENDER_ADDRESS and SENDGRID_API_KEY must be set up.
 
 First, [sign up for a SendGrid account](https://signup.sendgrid.com/), then follow the instructions to complete your "Single Sender Verification", clicking the link in a confirmation email to verify your account.
 
