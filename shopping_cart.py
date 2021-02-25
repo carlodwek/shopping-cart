@@ -48,14 +48,14 @@ def main():
                         print("Email uploaded.")
                 print("Thank you for shopping with us today!")
             else:
-                print('Your cart is empty.')
+                print('Your cart is empty. Please try again.')
         elif choice == "sync inventory" or choice == "syncinventory":
             products = GetProducts()
             print("Inventory synced.")
         elif choice == "exit":
             check = False
         else:
-            print("Invalid selection.")
+            print("Invalid selection. Please try again.")
 
 
 
@@ -105,7 +105,7 @@ def Cart(products):
                 cart.append(selectioncopy)
                 print(selection["name"], "added to cart.")
         else:
-            print("Invalid identifier.")
+            print("Invalid identifier. Please try again.")
     #print(cart)
     return cart
 #to do: Receipt output!!!
